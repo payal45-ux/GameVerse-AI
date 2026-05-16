@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameVerse AI — Master Every Game</title>
+<link rel="stylesheet" href="style.css"/>
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">GAMEVERSE AI</div>
+  <div style="font-size:0.75rem;letter-spacing:0.2em;color:#3a5a7a;margin-top:0.5rem;font-family:'Share Tech Mono',monospace;">INITIALIZING SYSTEMS...</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-tail"></div>
+
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NOTIFICATION -->
+<div id="notification">
+  <div class="notif-icon">🎮</div>
+  <div>
+    <div class="notif-title">Daily Reward Available!</div>
+    <div class="notif-sub">Claim 50 XP today</div>
+  </div>
+  <button class="notif-close" onclick="closeNotif()">✕</button>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar-backdrop" id="backdrop" onclick="closeSidebar()"></div>
+<aside id="sidebar">
+  <div class="nav-logo" style="margin-bottom:2rem;">GAME<span>VERSE</span></div>
+  <a class="sidebar-link" href="#hero"><span class="sidebar-link-icon">🏠</span> Home</a>
+  <a class="sidebar-link" href="#how-its-works"><span class="sidebar-link-icon">⚡</span> How It Works</a>
+  <a class="sidebar-link" href="#games"><span class="sidebar-link-icon">🎮</span> Games</a>
+  <a class="sidebar-link" href="#categories"><span class="sidebar-link-icon">📚</span> Guides</a>
+  <a class="sidebar-link" href="#videos"><span class="sidebar-link-icon">📺</span> Tutorials</a>
+  <a class="sidebar-link" href="#ai-assistant"><span class="sidebar-link-icon">🤖</span> AI Assistant</a>
+  <a class="sidebar-link" href="#profile"><span class="sidebar-link-icon">👤</span> Profile</a>
+
+</aside>
+
+<!-- NAVBAR -->
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <button class="hamburger" onclick="openSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="nav-logo" href="#hero">GAME<span>VERSE</span> <span style="font-size:0.7em;color:var(--neon-green);">AI</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#games">Games</a></li>
+    <li><a href="#how-its-works">How It Works</a></li>
+    <li><a href="#categories">Guides</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#ai-assistant">AI</a></li>
+    <li><a href="#profile">Profile</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search games..." oninput="showSearchSugg(this.value)">
+      <div id="search-suggestions"></div>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost" onclick="openModal('login')">Log In</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-slides">
+      <div class="hero-slide active" style="background:linear-gradient(135deg,#0a0014 0%,#000a1a 50%,#0f0020 100%);"></div>
+      <div class="hero-slide" style="background:linear-gradient(135deg,#1a0005 0%,#0a0014 50%,#001a0a 100%);"></div>
+      <div class="hero-slide" style="background:linear-gradient(135deg,#000a1a 0%,#1a0005 50%,#0a0014 100%);"></div>
+    </div>
+    <!-- Animated grid lines -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15;" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00d4ff" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="hero-overlay"></div>
+    <div class="hero-scanlines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      AI-POWERED GAMING PLATFORM
+    </div>
+    <h1 class="hero-title">
+      Level Up Your Skills<br>
+      With <span class="glow-blue">AI-Powered</span><br>
+      <span class="glow-purple">Guides</span>
+    </h1>
+    <p class="hero-sub">Tips, walkthroughs, builds, strategies, and pro settings for every game — powered by next-generation AI.</p>
+    <div class="hero-buttons">
+      <a href="#games" class="btn-primary">🎮 Explore Guides</a>
+      <a href="#videos" class="btn-secondary">▶ Watch Tutorials</a>
+      <a href="#ai-assistant" class="btn-ghost">🤖 AI Assistant</a>
+    </div>
+  
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how reveal" id="how">
+    <div class="container"></div>
+  <div class="section-label">// HOW IT WORKS</div>
+  <h2 class="section-title">From Idea to Game<br>In 4 Simple Steps</h2>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">DESCRIBE YOUR GAME</div>
+      <div class="step-desc">Type your game idea in plain language. No technical terms needed — just describe what you want to build.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">AI ANALYZES IT</div>
+      <div class="step-desc">GamePilot AI understands your idea, identifies the game type, complexity, and best approach to build it.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">GET YOUR PLAN</div>
+      <div class="step-desc">Receive a structured plan with tools, code snippets, step-by-step instructions, and pro tips.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">BUILD & SHIP IT</div>
+      <div class="step-desc">Follow the plan, use the AI chat for help when stuck, and publish your finished browser game online.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- AI ASSISTANT -->
+ 
+<section id="ai-assistant" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">🤖 AI Powered</div>
+      <h2 class="section-title">Your <span>AI Gaming</span> Assistant</h2>
+      <p class="section-sub">Ask anything. Get instant pro-level answers powered by advanced AI.</p>
+    </div>
+    <div class="ai-wrapper reveal">
+      <ul class="ai-features-list">
+        <li class="ai-feature-item">
+          <div class="ai-feature-icon">⚡</div>
+          <div><div class="ai-feature-title">Instant Strategy Answers</div><div class="ai-feature-desc">Ask any in-game question and receive pro-level strategies in seconds.</div></div>
+        </li>
+        <li class="ai-feature-item">
+          <div class="ai-feature-icon">🎯</div>
+          <div><div class="ai-feature-title">Personalized Builds</div><div class="ai-feature-desc">AI-generated weapon loadouts and character builds tailored to your playstyle.</div></div>
+        </li>
+        <li class="ai-feature-item">
+          <div class="ai-feature-icon">🗺️</div>
+          <div><div class="ai-feature-title">Map Intelligence</div><div class="ai-feature-desc">Best drop zones, rotations, and zone predictions for every map.</div></div>
+        </li>
+        <li class="ai-feature-item">
+          <div class="ai-feature-icon">📈</div>
+          <div><div class="ai-feature-title">Rank Climbing System</div><div class="ai-feature-desc">Personalized roadmap to hit your target rank with daily tips.</div></div>
+        </li>
+        <li class="ai-feature-item">
+          <div class="ai-feature-icon">🎙️</div>
+          <div><div class="ai-feature-title">Voice Input</div><div class="ai-feature-desc">Speak your question — the AI listens and responds hands-free.</div></div>
+        </li>
+      </ul>
+
+      <!-- CHATBOT -->
+      <div class="chatbot-panel">
+        <div class="chatbot-header">
+          <div class="bot-avatar">🤖</div>
+          <div>
+            <div class="bot-name">NEXUS AI</div>
+            <div class="bot-status"><div class="badge-dot" style="width:5px;height:5px;background:var(--neon-green);border-radius:50%;animation:pulse 1s infinite;"></div> Online · Analyzing meta...</div>
+          </div>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+          <div class="msg msg-bot">👋 Hey gamer! I'm Nexus AI. Ask me anything — best guns, sensitivity, how to rank up, top landing spots, or anything else!</div>
+        </div>
+        <div class="chatbot-quick-btns">
+          <button class="quick-btn" onclick="sendQuick('Best sensitivity for BGMI?')">🎯 Best Sensitivity</button>
+          <button class="quick-btn" onclick="sendQuick('Best weapons in PUBG?')">🔫 Best Weapons</button>
+          <button class="quick-btn" onclick="sendQuick('How to rank up fast?')">📈 Rank Up Fast</button>
+          <button class="quick-btn" onclick="sendQuick('Best landing spots?')">🗺️ Drop Zones</button>
+          <button class="quick-btn" onclick="sendQuick('Best loadout for Warzone?')">💣 Best Loadout</button>
+        </div>
+        <div class="chatbot-input-row">
+          <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask Nexus AI anything..." onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="btn-voice" title="Voice input">🎙️</button>
+          <button class="btn-send" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED GAMES -->
+<section id="games" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">🎮 Featured Games</div>
+      <h2 class="section-title">Top <span>Battle-Tested</span> Games</h2>
+      <p class="section-sub">Pro guides, meta builds, and expert strategies for the most competitive titles.</p>
+    </div>
+    <div class="games-grid reveal">
+      <!-- PUBG -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#1a0a00,#3a1a00);">
+          🔫
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-badge">🔥 HOT</div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">PUBG: BATTLEGROUNDS</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.8</div>
+            <div class="game-guides-count">📋 142 Guides</div>
+          </div>
+        </div>
+      </div>
+      <!-- BGMI -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#001a10,#002a1a);">
+          🎯
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-badge">🇮🇳 INDIA</div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">BGMI</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.9</div>
+            <div class="game-guides-count">📋 198 Guides</div>
+          </div>
+        </div>
+      </div>
+      <!-- MINECRAFT -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#0a1a00,#1a3000);">
+          ⛏️
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">MINECRAFT</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.7</div>
+            <div class="game-guides-count">📋 231 Guides</div>
+          </div>
+        </div>
+      </div>
+      <!-- VALORANT -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#1a0005,#2a000a);">
+          ⚡
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-badge">🏆 ESPORTS</div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">VALORANT</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.9</div>
+            <div class="game-guides-count">📋 175 Guides</div>
+          </div>
+        </div>
+      </div>
+      <!-- GTA V -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#001020,#002040);">
+          🏎️
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">GTA V</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.6</div>
+            <div class="game-guides-count">📋 89 Guides</div>
+          </div>
+        </div>
+      </div>
+      <!-- COD WARZONE -->
+      <div class="game-card">
+        <div class="game-thumb-placeholder" style="background:linear-gradient(135deg,#0a0a00,#1a1a00);">
+          💣
+          <div class="game-card-overlay"><button class="btn-view-guides">VIEW GUIDES</button></div>
+        </div>
+        <div class="game-badge">🆕 UPDATED</div>
+        <div class="game-rgb-border"></div>
+        <div class="game-card-body">
+          <div class="game-card-title">CALL OF DUTY: WARZONE</div>
+          <div class="game-card-meta">
+            <div class="game-rating">⭐ 4.7</div>
+            <div class="game-guides-count">📋 163 Guides</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- CATEGORIES -->
+<section id="categories" class="section-pad" style="background:radial-gradient(ellipse at 0% 50%,rgba(0,212,255,0.04) 0%,transparent 60%);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">📚 Browse</div>
+      <h2 class="section-title">Guide <span>Categories</span></h2>
+      <p class="section-sub">From beginner tips to pro esports strategies — find exactly what you need.</p>
+    </div>
+    <div class="categories-grid reveal">
+      <div class="cat-card"><span class="cat-icon">🌱</span><div class="cat-title">Beginner Guides</div><div class="cat-count">84 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">⚔️</span><div class="cat-title">Pro Strategies</div><div class="cat-count">112 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🔫</span><div class="cat-title">Weapon Loadouts</div><div class="cat-count">97 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🎯</span><div class="cat-title">Sensitivity Settings</div><div class="cat-count">43 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🗺️</span><div class="cat-title">Map Tutorials</div><div class="cat-count">68 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🦸</span><div class="cat-title">Character Builds</div><div class="cat-count">76 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🏆</span><div class="cat-title">Esports Tips</div><div class="cat-count">55 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">📈</span><div class="cat-title">Rank Push Guides</div><div class="cat-count">61 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">🔐</span><div class="cat-title">Secret Tricks</div><div class="cat-count">38 guides</div></div>
+      <div class="cat-card"><span class="cat-icon">⚡</span><div class="cat-title">FPS Optimization</div><div class="cat-count">29 guides</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- VIDEO TUTORIALS -->
+<section id="videos" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">📺 Tutorials</div>
+      <h2 class="section-title">Video <span>Guides</span></h2>
+      <p class="section-sub">Watch pro tutorials, sensitivity guides, and advanced strategies.</p>
+    </div>
+    <div class="video-grid reveal">
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#001a10,#002a20);">🎮</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">12:34</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">Best BGMI Sensitivity Settings 2026 — Pro Guide</div>
+          <div class="video-meta">
+            <span class="video-views">👁 2.4M views</span>
+            <span>3 days ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#1a0a00,#2a1000);">🔫</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">8:47</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">Top 10 PUBG Tricks Most Players Don't Know</div>
+          <div class="video-meta">
+            <span class="video-views">👁 1.8M views</span>
+            <span>1 week ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#1a0005,#280008);">⚡</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">15:22</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">Valorant Aim Guide — Hit Radiant in 30 Days</div>
+          <div class="video-meta">
+            <span class="video-views">👁 3.1M views</span>
+            <span>5 days ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#001020,#002040);">💣</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">10:05</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">Warzone: Best Loadout Meta Season 4 2026</div>
+          <div class="video-meta">
+            <span class="video-views">👁 980K views</span>
+            <span>2 days ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#0a1a00,#142800);">⛏️</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">22:18</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">Minecraft: Ultimate Redstone Beginner to Pro</div>
+          <div class="video-meta">
+            <span class="video-views">👁 1.2M views</span>
+            <span>2 weeks ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#0a0a00,#1a1400);">🏎️</div>
+          <div class="play-overlay"><div class="play-btn">▶</div></div>
+          <div class="video-duration">18:33</div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-title">GTA V Online: Make $10M Per Hour (Easy)</div>
+          <div class="video-meta">
+            <span class="video-views">👁 4.5M views</span>
+            <span>3 weeks ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- PROFILE -->
+<section id="profile" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">👤 Dashboard</div>
+      <h2 class="section-title">Your <span>Gamer Profile</span></h2>
+    </div>
+    <div class="profile-card reveal">
+      <div class="profile-top">
+        <div class="avatar-wrap">
+          <div class="profile-avatar">😎</div>
+          <div class="profile-level">LVL 42</div>
+        </div>
+        <div>
+          <div class="profile-name">SHADOW_PRO_XD</div>
+          <div class="profile-rank">⚡ DIAMOND RANK — BGMI</div>
+          <div class="xp-bar-wrap">
+            <div class="xp-bar"><div class="xp-fill"></div></div>
+            <div class="xp-label">7,200 / 10,000 XP</div>
+          </div>
+        </div>
+      </div>
+      <div class="badges-row">
+        <div class="badge-item"><span>🏆</span> Champion</div>
+        <div class="badge-item"><span>🔥</span> 30-Day Streak</div>
+        <div class="badge-item"><span>🎯</span> Sharpshooter</div>
+        <div class="badge-item"><span>📚</span> Guide Master</div>
+        <div class="badge-item"><span>⚡</span> Speed Runner</div>
+        <div class="badge-item"><span>🤖</span> AI User</div>
+      </div>
+      <div class="profile-stats-grid">
+        <div class="profile-stat-card">
+          <span class="profile-stat-num">342</span>
+          <div class="profile-stat-lbl">Guides Read</div>
+        </div>
+        <div class="profile-stat-card">
+          <span class="profile-stat-num">28</span>
+          <div class="profile-stat-lbl">Saved Guides</div>
+        </div>
+        <div class="profile-stat-card">
+          <span class="profile-stat-num">7.2K</span>
+          <div class="profile-stat-lbl">Total XP</div>
+        </div>
+        <div class="profile-stat-card">
+          <span class="profile-stat-num">6</span>
+          <div class="profile-stat-lbl">Fav Games</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY REWARDS -->
+    <div style="text-align:center;margin-top:3rem;" class="reveal">
+      <div class="section-tag">🎁 Daily Rewards</div>
+      <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-top:0.5rem;letter-spacing:0.05em;">Claim Your <span style="color:var(--neon-blue);">Daily XP</span></h3>
+      <div class="rewards-grid">
+        <div class="reward-day claimed"><span class="reward-icon">💰</span><div class="reward-xp">+10 XP</div><div class="reward-day-label">Day 1</div><div class="claim-check">✓</div></div>
+        <div class="reward-day claimed"><span class="reward-icon">⚔️</span><div class="reward-xp">+20 XP</div><div class="reward-day-label">Day 2</div><div class="claim-check">✓</div></div>
+        <div class="reward-day claimed"><span class="reward-icon">🏆</span><div class="reward-xp">+30 XP</div><div class="reward-day-label">Day 3</div><div class="claim-check">✓</div></div>
+        <div class="reward-day today" onclick="claimReward(this)"><span class="reward-icon">💎</span><div class="reward-xp">+50 XP</div><div class="reward-day-label">Day 4 — TODAY</div></div>
+        <div class="reward-day locked"><span class="reward-icon">🔒</span><div class="reward-xp">+75 XP</div><div class="reward-day-label">Day 5</div></div>
+        <div class="reward-day locked"><span class="reward-icon">🔒</span><div class="reward-xp">+100 XP</div><div class="reward-day-label">Day 6</div></div>
+        <div class="reward-day locked"><span class="reward-icon">🎯</span><div class="reward-xp">+200 XP</div><div class="reward-day-label">Day 7 🎁</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+
+<!-- MEMES SECTION -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">😂 Community</div>
+      <h2 class="section-title">Gaming <span>Memes</span></h2>
+      <p class="section-sub">Because every gamer needs a laugh between matches.</p>
+    </div>
+    <div class="memes-grid reveal">
+      <div class="meme-card">
+        <span class="meme-emoji">💀</span>
+        <div class="meme-text">"Just one more game" at 3AM</div>
+        <div class="meme-likes">❤️ 24.3K likes</div>
+      </div>
+      <div class="meme-card">
+        <span class="meme-emoji">😤</span>
+        <div class="meme-text">When your teammate drops in a different zone</div>
+        <div class="meme-likes">❤️ 18.7K likes</div>
+      </div>
+      <div class="meme-card">
+        <span class="meme-emoji">🔫</span>
+        <div class="meme-text">Me with 1 HP trying to third-party</div>
+        <div class="meme-likes">❤️ 31.2K likes</div>
+      </div>
+      <div class="meme-card">
+        <span class="meme-emoji">📶</span>
+        <div class="meme-text">Enemy kills me. WiFi bars: 5. Ping: 999</div>
+        <div class="meme-likes">❤️ 42.1K likes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">GAME<span style="color:var(--neon-purple);">VERSE</span> AI</div>
+      <div class="footer-brand-desc">The ultimate AI-powered gaming guide platform. Master every game with pro strategies, real-time esports data, and personalized tips.</div>
+      <div class="footer-social">
+        <a class="social-btn" href="#" title="YouTube">📺</a>
+        <a class="social-btn" href="#" title="Discord">💬</a>
+        <a class="social-btn" href="#" title="Twitter/X">𝕏</a>
+        <a class="social-btn" href="#" title="Instagram">📷</a>
+        <a class="social-btn" href="#" title="Telegram">✈️</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Games</div>
+      <ul class="footer-links">
+        <li><a href="#">BGMI</a></li>
+        <li><a href="#">PUBG PC</a></li>
+        <li><a href="#">Valorant</a></li>
+        <li><a href="#">Warzone</a></li>
+        <li><a href="#">GTA V</a></li>
+        <li><a href="#">Minecraft</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Guides</div>
+      <ul class="footer-links">
+        <li><a href="#">Beginners</a></li>
+        <li><a href="#">Pro Tips</a></li>
+        <li><a href="#">Loadouts</a></li>
+        <li><a href="#">Sensitivity</a></li>
+        <li><a href="#">Rank Push</a></li>
+        <li><a href="#">FPS Boost</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <ul class="footer-links">
+        <li><a href="#">AI Assistant</a></li>
+        <li><a href="#">Tournaments</a></li>
+        <li><a href="#">Leaderboard</a></li>
+        <li><a href="#">Clan System</a></li>
+        <li><a href="#">Live Chat</a></li>
+        <li><a href="#">Daily Rewards</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GameVerse AI — All rights reserved</span>
+    <span>Built for Gen-Z Gamers 🎮</span>
+    <span style="color:var(--neon-blue);">Made with ⚡ and AI</span>
+  </div>
+</footer>
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-logo">
+      <div class="logo-icon">🎮</div>
+      <span>GAME<b>PILOT</b> AI</span>
+    </div>
+
+    <h2 id="modalTitle">Welcome Back</h2>
+    <p id="modalSub">Log in to save your game plans and access your history.</p>
+
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab-login" onclick="switchModal('login')">Log In</div>
+      <div class="modal-tab" id="tab-signup" onclick="switchModal('signup')">Sign Up</div>
+    </div>
+
+    <!-- Login Form -->
+    <div id="form-login">
+      <div class="social-btns">
+        <button class="social-btn">🔵 Google</button>
+        <button class="social-btn">⚫ GitHub</button>
+      </div>
+      <div class="divider"><span>or continue with email</span></div>
+      <div class="form-group">
+        <label class="form-label">EMAIL ADDRESS</label>
+        <input class="form-input" type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">PASSWORD</label>
+        <input class="form-input" type="password" placeholder="••••••••"/>
+      </div>
+      <button class="form-submit">Log In →</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="form-signup" style="display:none">
+      <div class="social-btns">
+        <button class="social-btn">🔵 Google</button>
+        <button class="social-btn">⚫ GitHub</button>
+      </div>
+      <div class="divider"><span>or continue with email</span></div>
+      <div class="form-group">
+        <label class="form-label">FULL NAME</label>
+        <input class="form-input" type="text" placeholder="Your name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">EMAIL ADDRESS</label>
+        <input class="form-input" type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">PASSWORD</label>
+        <input class="form-input" type="password" placeholder="Min. 8 characters"/>
+      </div>
+      <button class="form-submit">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- LIVE CHAT WIDGET -->
+<div id="live-chat">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-win-header">
+      <div class="chat-win-title">💬 LIVE COMMUNITY CHAT</div>
+      <button class="chat-win-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-win-messages" id="liveMessages">
+      <div class="chat-msg"><div class="user">SkyWalker_99</div><div class="text">Anyone know the new BGMI meta?</div></div>
+      <div class="chat-msg"><div class="user">DragonX</div><div class="text">M416 still slaps ngl 🔥</div></div>
+      <div class="chat-msg"><div class="user">NightShadow</div><div class="text">Erangel rotation tip: always go west circle!</div></div>
+      <div class="chat-msg"><div class="user">ThunderGod</div><div class="text">Miramar is the best map change my mind</div></div>
+    </div>
+    <div class="chat-win-input">
+      <input type="text" id="liveChatInput" placeholder="Send a message..." onkeydown="if(event.key==='Enter')sendLiveMsg()">
+      <button onclick="sendLiveMsg()">Send</button>
+    </div>
+  </div>
+  <button class="chat-fab" onclick="toggleChat()">
+    💬
+    <div class="chat-notif-dot"></div>
+  </button>
+</div>
+
+<!-- BOTTOM NAV MOBILE -->
+<nav class="bottom-nav">
+  <a class="bottom-nav-item active" href="#hero"><div class="bottom-nav-icon">🏠</div>Home</a>
+  <a class="bottom-nav-item" href="#games"><div class="bottom-nav-icon">🎮</div>Games</a>
+  <a class="bottom-nav-item" href="#ai-assistant"><div class="bottom-nav-icon">🤖</div>AI</a>
+  <a class="bottom-nav-item" href="#esports"><div class="bottom-nav-icon">🏆</div>Esports</a>
+  <a class="bottom-nav-item" href="#profile"><div class="bottom-nav-icon">👤</div>Profile</a>
+</nav>
+
+</body>
+</html>
