@@ -11,6 +11,11 @@ window.addEventListener('load', () => {
 
 // CUSTOM CURSOR
 let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX;
+  my = e.clientY;
+  document.getElementById('cursor').style.transform = `translate(${mx}px, ${my}px)`;
+});
 
 // PARTICLES
 (function(){

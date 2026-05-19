@@ -25,37 +25,12 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   overflow-x: hidden;
-  cursor: none;
+ 
 }
 
 
-/* CUSTOM CURSOR */
-#cursor {
-  position: fixed;
-  width: 12px; height: 12px;
-  background: var(--neon-blue);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.1s;
-  box-shadow: 0 0 12px var(--neon-blue), 0 0 30px rgba(0,212,255,0.4);
-  transform: translate(-50%,-50%);
-}
-#cursor-ring {
-  position: fixed;
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(18, 51, 58, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%,-50%);
-  transition: width 0.2s, height 0.2s, border-color 0.2s;
-}
-body:has(a:hover) #cursor-ring,
-body:has(button:hover) #cursor-ring {
-  width: 52px; height: 52px;
-  border-color: var(--neon-purple);
-}
+
+
 /* HOW IT WORKS SECTION */
 
 .how {
